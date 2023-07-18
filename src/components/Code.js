@@ -8,7 +8,7 @@ import Events from './Events'
 import Control from './Control'
 import Tabitem from './Tabitem';
 import TabContent from './TabContent';
-import './imagemove';
+//import './imagemove';
 
 
 const Code = () => {
