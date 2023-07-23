@@ -1,20 +1,49 @@
 import React,{ useState} from 'react';
 //import ReactDOM from "react-dom";
 import './Codestyles.css';
-import catimg from '../images/catimg.jpg';
 import Motion from './Motion';
 import Looks from './Looks';
 import Events from './Events'
 import Control from './Control'
 import Tabitem from './Tabitem';
 import TabContent from './TabContent';
-//import './imagemove';
+import Picture from './Picture'
+import { useDrop } from "react-dnd";
 
-
-const Code = () => {
+const PictureList=[
+  {id:1,url:"https://en.scratch-wiki.info/w/images/ScratchCat-Small.png"},
+  {id:2,url:"https://test.scratch-wiki.info/w/images/d/dc/ScratchCatJr.png?20151109205939"}
+];
+function Code () {
   const [activeTab, setActiveTab] = useState("motion");
+  //const[add,setAdd]=useState(false);
+  const[box,setBox]=useState(false);
   
+
+  /*const addimg=()=>{
+      setAdd(!add);
+  }*/
+  const togglebox=()=>{
+    setBox(!box);
+  }
+  
+  const [board, setBoard] = useState([]);
+
+  const [{ isOver }, drop] = useDrop(() => ({
+    accept: "image",
+    drop: (item) => addImageToBoard(item.id),
+    collect: (monitor) => ({
+      isOver: !!monitor.isOver(),
+    }),
+  }));
+
+  const addImageToBoard = (id) => {
+    const pictureList = PictureList.filter((picture) => id === picture.id);
+    setBoard((board) => [...board, pictureList[0]]);
+  };
+
   return (
+    
     <div className='middle'>
       <div className='written_code'>Code</div>
       <div className='block'>
@@ -33,25 +62,41 @@ const Code = () => {
             <TabContent id="events" activeTab={activeTab}><Events/></TabContent>
             <TabContent id="control" activeTab={activeTab}><Control/></TabContent>
           </div>
+         
+          <div className='img2'>
+          {PictureList.map((picture) => {
+          return <Picture url={picture.url} id={picture.id} />;
+        })}
           </div>
-        </div>
+         
+          </div>
+             </div>
         <div className='right'>
-        <div className='cat'>
-            <img className='catimg' src={catimg} alt='catimage'/>
-        </div>
+        <div className='cat' ref={drop} >
+          
+        {board.map((picture) => {
+          return (
+           <div className={box ? 'catimg':''}>
+            <Picture url={picture.url} id={picture.id} />
+             </div>
+          );
+        })}
+        
+           </div>
         <div className='sprint'>
 
           Sprite<input className="s" type='text' placeholder='Sprite 1'></input>
           x<input className="x" type='text' placeholder='x'></input>
           y<input className="y" type='text' placeholder='y'></input>
         </div>
-        <script src="imagemove.js"></script>
-        <button className='play'>Play</button>
+        
+        <button className='play' onClick={togglebox}>Play</button>
         </div>
         
       </div>
     </div>
+    
   )
 }
 
-export default Code
+export default Code;

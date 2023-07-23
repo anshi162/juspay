@@ -1,6 +1,6 @@
 .middle{
     padding-top:80px;
-    height: 89vh;
+    height: 100vh;
     background-color: rgb(191, 208, 250);
 }
 .middle .written_code{
@@ -19,7 +19,7 @@
     width: 50px;
     height: 40px;
     font-size: 1rem;
-    
+    cursor: pointer;
 }
 .middle .block{
     max-width: 1140px;
@@ -42,7 +42,7 @@
     height:635px;
     display: grid;
     grid-template-columns: 460px;
-    grid-template-rows: 400px 200px ;
+    grid-template-rows: 400px 100px ;
     grid-gap:10px;
     background-color:   rgb(191, 208, 250);
 }
@@ -59,15 +59,44 @@
     text-align: center;
   
 }
+
+
+.img2{
+    float:right;
+    margin-bottom: 2px;
+    width:80px;
+    height: 50%;
+    
+}
+.caty{
+    position: absolute;
+    
+    height: 400px;
+    width:450px;
+    border: 2px solid black;
+}
 .catimg{
-    padding: 70px;
+    position: inherit;
     height: 100px;
-    width: 100px;
-    align-items: center;
+    width: 70px;
+    animation-name: transformx,transite,down;
+    animation-delay: 0s,0s,3s;
+    animation-duration: 2s, 6s,6s;
 }
-::after .catimg{
-    position: initial;
+@keyframes transformx {
+    from{}
+    to{ transform: rotate(360deg); }
 }
+@keyframes transite {
+    from{}
+    to{translate: 70px 0px;}
+}
+@keyframes down {
+    from{  }
+    to{translate: 70px 70px;}
+}
+ 
+
 .effects .tabs{
     width: 100%;
     height: 100%;
@@ -158,10 +187,12 @@ input{
     padding: .5rem;
    
 }
+
+
 @media screen and (max-width:1140px){
     .middle{
         padding-top: 60px;
-        height: 115vh;
+        height: 120vh;
         
     }
     .middle .block{
@@ -179,11 +210,18 @@ input{
         height: 150px;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr;
+        grid-template-rows: 250px;
         padding: auto;
     }
     .right .sprint{
         height: 100px;
     }
+    .right .cat{
+        height: 150px;
+        text-align: center;
+    }
+    .caty{
+        height:100px;
+        width:200px;
+    }
 }
-
