@@ -1,0 +1,20 @@
+form{
+    background-color: rgb(97, 97, 227);
+    width: 40%;
+    font-size: 0.8rem;
+    margin-left: 80px;
+    border-radius: 20%;
+    color: black;
+    margin-top: 20px;
+    height:30px;
+    text-align: center;
+}
+input{
+    width: 30%;
+    border-radius: 40%;
+}
+.event form{
+        width:55%;
+        height: 20px;
+        margin-left: 60px;
+}
